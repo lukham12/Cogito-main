@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://8kvu6p3oas85"]
+
+[ext_resource type="PackedScene" uid="uid://fkn5e0yse4hu" path="res://Caves/Cave.glb" id="1_dmhwf"]
+[ext_resource type="Texture2D" uid="uid://wlkg6ltvmj7e" path="res://Textures/Stone/seaside_rock_diff_1k.png" id="2_wb5i7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikrvt"]
+albedo_texture = ExtResource("2_wb5i7")
+uv1_scale = Vector3(0.18, 0.18, 0.18)
+uv1_triplanar = true
+
+[node name="Cave" instance=ExtResource("1_dmhwf")]
+
+[node name="Sphere" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ikrvt")

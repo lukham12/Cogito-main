@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckeeh60rswqom"]
+
+[ext_resource type="Script" path="res://COGITO/Scripts/hazard_zone.gd" id="1_uakpb"]
+[ext_resource type="Texture2D" uid="uid://cakt3xnespmsb" path="res://Icons/OxygenBubble.png" id="2_cwiic"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ldbt"]
+size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tilja"]
+size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drdat"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.333333, 0.611765, 0.313726, 0)
+rim = 0.0
+rim_tint = 0.0
+backlight = Color(0.509804, 0.294118, 0.294118, 1)
+disable_receive_shadows = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyeq4"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isywl"]
+transparency = 1
+albedo_texture = ExtResource("2_cwiic")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sii5v"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_isywl")
+
+[node name="oxygen_zone" type="Area3D"]
+script = ExtResource("1_uakpb")
+player_attribute = "oxygen"
+drain_amount = 10.0
+is_recovery_zone = true
+hint_icon = ExtResource("2_cwiic")
+hint_message = "Oxygen is replenishing"
+is_active = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3ldbt")
+
+[node name="TransparentBox" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tilja")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_drdat")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TransparentBox"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+visibility_aabb = AABB(-1, -2, -1, 2, 4, 2)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_iyeq4")
+draw_pass_1 = SubResource("QuadMesh_sii5v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

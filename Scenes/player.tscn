@@ -1,0 +1,539 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbcwvogjogn5o"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterController.gd" id="1_t8lla"]
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="2_g78v8"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="3_8fpl1"]
+[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="4_tvwkq"]
+[ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="5_p4pkj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_517wq"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_t8lla")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_517wq")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75161, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -5)
+
+[node name="Menu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("2_g78v8")
+
+[node name="MainControl" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu Title" type="Label" parent="Menu/MainControl"]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 59.0
+offset_right = 599.0
+offset_bottom = 82.0
+text = "Menu"
+
+[node name="Resume" type="Button" parent="Menu/MainControl"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 121.0
+offset_right = 710.0
+offset_bottom = 205.0
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Menu/MainControl"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 238.0
+offset_right = 709.0
+offset_bottom = 322.0
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Menu/MainControl"]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 377.0
+offset_right = 714.0
+offset_bottom = 461.0
+text = "Quit
+"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_8fpl1")
+
+[node name="MainControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/MainControl"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 613.0
+offset_right = 669.0
+offset_bottom = 640.0
+value = 75.0
+show_percentage = false
+
+[node name="OxygenBar" type="ProgressBar" parent="HUD/MainControl"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 580.0
+offset_right = 668.0
+offset_bottom = 607.0
+value = 75.0
+show_percentage = false
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+script = ExtResource("4_tvwkq")
+
+[node name="Hotbar" type="Control" parent="Inventory"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Grid" type="GridContainer" parent="Inventory/Hotbar"]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 524.0
+offset_right = 838.0
+offset_bottom = 574.0
+columns = 10
+
+[node name="Slot1" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot2" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot3" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot4" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot5" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot6" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot7" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot8" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot9" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot10" type="PanelContainer" parent="Inventory/Hotbar/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Inventory" type="Control" parent="Inventory"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Inventory/Inventory"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 37.0
+offset_right = 861.0
+offset_bottom = 508.0
+
+[node name="Grid" type="GridContainer" parent="Inventory/Inventory/Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 570.0
+offset_bottom = 451.0
+columns = 10
+
+[node name="Slot1" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot2" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot3" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot4" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot5" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot6" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot7" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot8" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot9" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot10" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot11" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot12" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot13" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot14" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot15" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot16" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot17" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot18" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot19" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot20" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot21" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot22" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot23" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot24" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot25" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot26" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot27" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot28" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot29" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot30" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot31" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot32" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot33" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot34" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot35" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot36" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot37" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot38" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot39" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot40" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot41" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot42" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot43" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot44" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot45" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot46" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot47" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot48" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot49" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot50" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot51" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot52" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot53" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot54" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot55" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot56" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot57" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot58" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot59" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot60" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot61" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot62" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot63" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot64" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot65" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot66" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot67" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot68" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot69" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot70" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot71" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot72" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot73" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot74" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot75" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot76" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot77" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot78" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot79" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Slot80" type="PanelContainer" parent="Inventory/Inventory/Panel/Grid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Inventory/Inventory/Panel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = -36.0
+offset_right = 386.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 40
+text = "Inventory"
+
+[node name="DeathScreen" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("5_p4pkj")
+
+[node name="Control" type="Control" parent="DeathScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="DeathScreen/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 53.0
+offset_right = 636.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 50
+text = "Dead"
+
+[node name="Pickup" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Pickup"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemLabel" type="Label" parent="Pickup/Control"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TESTINGGG"
+
+[connection signal="button_down" from="Menu/MainControl/Resume" to="Menu" method="_on_resume_button_down"]
+[connection signal="button_down" from="Menu/MainControl/Settings" to="Menu" method="_on_settings_button_down"]
+[connection signal="button_down" from="Menu/MainControl/Quit" to="Menu" method="_on_quit_button_down"]

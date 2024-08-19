@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctfqsndtl64p8"]
+
+[ext_resource type="Script" path="res://COGITO/Components/Attributes/OxygenAttribute.gd" id="1_ccwan"]
+
+[node name="OxygenAttribute" type="Node3D"]
+script = ExtResource("1_ccwan")
+attribute_name = "oxygen"
+attribute_display_name = "oxygen"
+attribute_color = Color(1, 1, 1, 1)
+value_max = 100.0
+value_start = 100.0

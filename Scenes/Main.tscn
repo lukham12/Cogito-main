@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://xwfmqcs7jgaq"]
+
+[ext_resource type="PackedScene" uid="uid://kicjwmh02uwf" path="res://COGITO/PackedScenes/cogito_player.tscn" id="1_o8f1y"]
+[ext_resource type="Script" path="res://COGITO/InventoryPD/cogito_inventory.gd" id="2_x5kcp"]
+[ext_resource type="PackedScene" uid="uid://drwglygtooy5y" path="res://Items/oxygen_bubble.tscn" id="3_sgnff"]
+[ext_resource type="PackedScene" uid="uid://ckeeh60rswqom" path="res://COGITO/PackedScenes/oxygen_zone.tscn" id="4_lodru"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rbwg7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8a4u"]
+
+[sub_resource type="Resource" id="Resource_msxp5"]
+resource_local_to_scene = true
+script = ExtResource("2_x5kcp")
+grid = true
+starter_inventory = Array[Resource("res://COGITO/InventoryPD/CustomResources/InventorySlotPD.gd")]([])
+inventory_size = Vector2i(5, 3)
+inventory_slots = Array[Resource("res://COGITO/InventoryPD/CustomResources/InventorySlotPD.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.41216, 0, 0, 0, 1, 0, 0, 0, 9.68221, 0, -1.98483, 0)
+mesh = SubResource("BoxMesh_rbwg7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_s8a4u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.72873, 0.684802, 0, -0.684802, 0.72873, 0.96301, 0.738514, 6.33098)
+
+[node name="CogitoPlayer" parent="." instance=ExtResource("1_o8f1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00186911, -0.501341, -1.92635)
+inventory_data = SubResource("Resource_msxp5")
+
+[node name="OxygenBubble" parent="." instance=ExtResource("3_sgnff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.976748, -0.385423, 0.428695)
+
+[node name="oxygen_zone" parent="." instance=ExtResource("4_lodru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91578, -0.0994029, 2.71799)
