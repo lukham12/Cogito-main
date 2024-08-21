@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bi2lrinmcvnqr"
+path="res://.godot/imported/Eternal Waves.mp3-fcd5578cb1769991d6bc032177d0c5e3.mp3str"
+
+[deps]
+
+source_file="res://Music/Eternal Waves.mp3"
+dest_files=["res://.godot/imported/Eternal Waves.mp3-fcd5578cb1769991d6bc032177d0c5e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

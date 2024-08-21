@@ -1,11 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://kicjwmh02uwf"]
+[gd_scene load_steps=26 format=3 uid="uid://kicjwmh02uwf"]
 
 [ext_resource type="Script" path="res://COGITO/CogitoObjects/cogito_player.gd" id="1_87we8"]
 [ext_resource type="Resource" uid="uid://ev2xuamhfojm" path="res://COGITO/InventoryPD/Inventories/PlayerInventory.tres" id="2_iyhv4"]
 [ext_resource type="AudioStream" uid="uid://b7wmxwvtbpfu1" path="res://COGITO/Assets/Audio/537275__laughingfish78__dirt-sliding.ogg" id="4_1i2kv"]
+[ext_resource type="AudioStream" uid="uid://bi2lrinmcvnqr" path="res://Music/Eternal Waves.mp3" id="4_vlnp8"]
+[ext_resource type="Script" path="res://Scripts/looper3D.gd" id="5_7cg67"]
 [ext_resource type="PackedScene" uid="uid://ctfqsndtl64p8" path="res://COGITO/Components/Attributes/OxygenAttribute.tscn" id="6_wkqfr"]
 [ext_resource type="PackedScene" uid="uid://ce7bjv28uakxl" path="res://COGITO/Components/Attributes/StaminaAttribute.tscn" id="8_kodbk"]
 [ext_resource type="PackedScene" uid="uid://cqgg1nng0vvbh" path="res://COGITO/Components/Attributes/HealthAttribute.tscn" id="9_ky5mf"]
+[ext_resource type="Texture2D" uid="uid://bgu84ay33ruun" path="res://COGITO/Assets/Graphics/UiIcons/Ui_Icon_Oxygen.png" id="9_rarnw"]
 [ext_resource type="AnimationLibrary" uid="uid://cdchpsv104er2" path="res://COGITO/Assets/Animations/player_eyes.tres" id="10_tp6cj"]
 [ext_resource type="Script" path="res://COGITO/Scripts/interaction_raycast.gd" id="11_miluh"]
 [ext_resource type="AudioStream" uid="uid://up2hfhgq1qx6" path="res://COGITO/Assets/Audio/Kenney/Footsteps/footstep00.ogg" id="12_ug3wt"]
@@ -45,6 +48,11 @@ slide_sound = ExtResource("4_1i2kv")
 HEADBOBBLE = 1
 STEP_MAX_SLOPE_DEGREE = 1.0
 
+[node name="ThemeSong" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_vlnp8")
+autoplay = true
+script = ExtResource("5_7cg67")
+
 [node name="StaminaAttribute" parent="." instance=ExtResource("8_kodbk")]
 
 [node name="HealthAttribute" parent="." instance=ExtResource("9_ky5mf")]
@@ -52,6 +60,7 @@ value_start = 100.0
 
 [node name="OxygenAttribute" parent="." instance=ExtResource("6_wkqfr")]
 decreaseRate = 2
+attribute_icon = ExtResource("9_rarnw")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -118,6 +127,7 @@ player = NodePath("..")
 
 [node name="PauseMenu" parent="." instance=ExtResource("22_haksr")]
 
+[connection signal="finished" from="ThemeSong" to="ThemeSong" method="_on_finished"]
 [connection signal="animation_finished" from="Neck/Head/Eyes/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="interactable_seen" from="Neck/Head/Eyes/Camera/InteractionRaycast" to="PlayerInteractionComponent" method="_on_interaction_raycast_interactable_seen"]
 [connection signal="interactable_unseen" from="Neck/Head/Eyes/Camera/InteractionRaycast" to="PlayerInteractionComponent" method="_on_interaction_raycast_interactable_unseen"]
