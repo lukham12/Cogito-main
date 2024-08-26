@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg0si7q48hjvw"]
+
+[ext_resource type="Script" path="res://boid.gd" id="1_2hma6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llwke"]
+size = Vector2(9.17, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0cuy"]
+size = Vector2(59, 38)
+
+[node name="boid" type="Area2D" groups=["boid"]]
+rotation = 3.14159
+script = ExtResource("1_2hma6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_llwke")
+
+[node name="vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_m0cuy")
+
+[node name="rays" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="rays"]
+target_position = Vector2(70, -5)
+
+[node name="RayCast2D2" type="RayCast2D" parent="rays"]
+target_position = Vector2(60, 5)
+
+[node name="RayCast2D3" type="RayCast2D" parent="rays"]
+target_position = Vector2(20, -30)
+
+[node name="RayCast2D4" type="RayCast2D" parent="rays"]
+target_position = Vector2(20, 30)
+
+[connection signal="area_entered" from="vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="vision" to="." method="_on_vision_area_exited"]
