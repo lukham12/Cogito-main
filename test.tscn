@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventorySlotPD.gd" id="2_3f1gr"]
 [ext_resource type="Script" path="res://COGITO/InventoryPD/cogito_inventory.gd" id="3_0mxiu"]
 [ext_resource type="Script" path="res://Scenes/newBoids.gd" id="4_0tv4v"]
-[ext_resource type="PackedScene" uid="uid://cig3l6ssj3gwg" path="res://Fishies/newFish.tscn" id="5_2whxr"]
+[ext_resource type="PackedScene" uid="uid://cig3l6ssj3gwg" path="res://Fishies/Fish1Model/fish.tscn" id="5_2whxr"]
 [ext_resource type="PackedScene" uid="uid://0630ppxtv2kn" path="res://Rocks/Rock1/rock_1.tscn" id="6_4reh4"]
 
 [sub_resource type="Resource" id="Resource_ft04e"]

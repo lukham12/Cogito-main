@@ -4,6 +4,7 @@ extends Node3D
 @export var visualRange: float = 2
 @export var separationDistance: float = 0.4;
 @export var predator: NodePath
+@export var player: NodePath
 @export var predatorMinDist: float = 300
 @onready var boids = get_children();
 
@@ -13,8 +14,13 @@ extends Node3D
 
 @export var obstacleWeight: float = 300
 @export var predatorWeight: float = 500
+@export var maxPlayerDistance: float = 10;
 
 var predatorRef;
+var playerRef;
+
+func _ready():
+	playerRef = get_tree().get_nodes_in_group("Player")[0];
 
 func _process(delta: float) -> void:
 	detectNeighbors();
@@ -24,17 +30,27 @@ func _process(delta: float) -> void:
 	alignment();
 	ceiling();
 	
-	#escapePredator();
+	escapePredator();
 
 func escapePredator():
 	for boid in boids:
-		var dist = boid.get_position().distance_to(predatorRef);
+		var dist = 9999999;#boid.get_position().distance_to(predatorRef);
 		
 		if dist < predatorMinDist:
 			var dir = (boid.get_position() - predatorRef.get_position()).normalized();
 			var multiplier = sqrt(1 - (dist / predatorMinDist));
 			
 			boid.acceleration += dir * multiplier * predatorWeight;
+		else:
+			var playerDist = boid.get_position().distance_to(playerRef.get_position());
+			
+			if playerDist < maxPlayerDistance:
+				var dir = (boid.get_position() - playerRef.get_position()).normalized();
+				"""
+				var multiplier = sqrt(1 - (dist / maxPlayerDistance));
+				
+				boid.acceleration += dir * multiplier * predatorWeight;
+				"""
 
 func ceiling():
 	for boid in boids:
