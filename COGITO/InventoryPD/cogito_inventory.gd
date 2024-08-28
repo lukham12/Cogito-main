@@ -240,13 +240,16 @@ func add_adjacent_slots(index: int):
 # check if an item either has free slots to occupy or can swap one item out
 func is_enough_space(grabbed_slot_data: InventorySlotPD, to_place_index: int, pickup: bool):
 	var swap_origin = -1
-	var size = grabbed_slot_data.inventory_item.item_size if grid else Vector2i(1,1)
+	var size = Vector2i(1, 1);
+	if grid:
+		size =  grabbed_slot_data.inventory_item.item_size
+	#var size = grabbed_slot_data.inventory_item.item_size if grid else Vector2i(1,1)
 	# check outside of y bounds
 	if (to_place_index + (size.x-1) + ((size.y-1)*inventory_size.x)) >= inventory_slots.size():
 		return false
 	var right_edge: int = to_place_index + size.x-1
 	# check row does not shift
-	if (int(to_place_index / inventory_size.x) != int(right_edge / inventory_size.x)):
+	if (int(float(to_place_index) / float(inventory_size.x)) != int(float(right_edge) / float(inventory_size.x))):
 		return false
 	for x in size.x:
 		for y in size.y:
@@ -263,7 +266,10 @@ func is_enough_space(grabbed_slot_data: InventorySlotPD, to_place_index: int, pi
 
 
 func get_item_to_swap(grabbed_slot_data: InventorySlotPD, to_place_index: int):
-	var size = grabbed_slot_data.inventory_item.item_size if grid else Vector2i(1,1)
+	var size = Vector2i(1, 1);
+	if grid:
+		size = grabbed_slot_data.inventory_item.item_size;
+	
 	for x in size.x:
 		for y in size.y:
 			var adj_item = inventory_slots[to_place_index + x + (y*inventory_size.x)]

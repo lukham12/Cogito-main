@@ -22,7 +22,7 @@ var playerRef;
 func _ready():
 	playerRef = get_tree().get_nodes_in_group("Player")[0];
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	detectNeighbors();
 	
 	cohesion();
@@ -45,7 +45,7 @@ func escapePredator():
 			var playerDist = boid.get_position().distance_to(playerRef.get_position());
 			
 			if playerDist < maxPlayerDistance:
-				var dir = (boid.get_position() - playerRef.get_position()).normalized();
+				var _dir = (boid.get_position() - playerRef.get_position()).normalized();
 				"""
 				var multiplier = sqrt(1 - (dist / maxPlayerDistance));
 				

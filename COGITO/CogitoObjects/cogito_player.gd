@@ -510,11 +510,11 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var dirr = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = move_toward(direction.x, current_speed, delta);
-		velocity.z = move_toward(direction.z, current_speed, delta);
+		velocity.x = move_toward(dirr.x, current_speed, delta);
+		velocity.z = move_toward(dirr.z, current_speed, delta);
 		
 		if is_sprinting:
 			velocity.x *= 2;

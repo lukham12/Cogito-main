@@ -22,7 +22,7 @@ func focus_changed(focus: Control):
 		var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "scroll_vertical", scroll_destination, transition_time)
 	else:
-		scroll_vertical = scroll_destination
+		scroll_vertical = int(scroll_destination)
 
 func _input(event):
 	_last_input_event = event

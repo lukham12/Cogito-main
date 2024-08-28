@@ -106,7 +106,7 @@ func _get_surface_material(collider : Node3D) -> Material:
 			
 			var coord = null
 			
-			for i in range(len(faces) / 3):
+			for i in range(int(float(len(faces)) / 3)):
 				# first, figure out what face we're standing on
 				var face_idx = i * 3
 				var a = mesh_instance.to_global(faces[face_idx])

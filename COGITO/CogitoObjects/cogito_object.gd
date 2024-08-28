@@ -2,7 +2,7 @@
 extends Node3D
 class_name CogitoObject
 
-signal damage_received(damage_value:float)
+#signal damage_received(damage_value:float)
 
 var interaction_nodes : Array[Node]
 var cogito_properties : CogitoProperties = null

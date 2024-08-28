@@ -19,8 +19,8 @@ signal slot_clicked(index: int, mouse_button: int)
 signal slot_pressed(index: int, action: String)
 signal highlight_slot(index: int, highlight: bool)
 
-func using_grid(using_grid: bool):
-	grid = using_grid
+func using_grid(usingGrid: bool):
+	grid = usingGrid
 
 func set_icon_region(x, y):
 	var region = item_data.get_region(x, y)

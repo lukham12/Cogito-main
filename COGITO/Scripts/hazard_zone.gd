@@ -1,6 +1,6 @@
 extends Area3D
 
-signal apply_hazard_effect()
+#signal apply_hazard_effect()
 
 ## Enter the player attribute that should get drained within the zone.
 @export var player_attribute : String

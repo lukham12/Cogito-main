@@ -8,7 +8,7 @@ var jumpVelocity = 10;
 # General functions
 
 func findFirstFreeIndex(array):
-	var lowestIndex;
+	var _lowestIndex;
 	
 	print(len(array));
 
@@ -147,18 +147,18 @@ func forceMouseMode(newValue):
 
 # Inventory
 
-var Inventory = [];
+var Inventory3 = [];
 var Hotbar = [];
 
 func addItemToInventory(item):
-	if Inventory.length() > 100:
+	if Inventory3.length() > 100:
 		print("WARNING: Inventory full, cannot add items. Item will be disguarded.")
 		
 		pass;
 	
-	Inventory.append(item);
+	Inventory3.append(item);
 
-func addItemToHotbar(item):
+func addItemToHotbar(_hotbarItem):
 	if Hotbar.length() > 10:
 		print("WARNING: Hotbar full, cannot add items. Item will be disguarded.")
 		
@@ -166,17 +166,17 @@ func addItemToHotbar(item):
 	
 	# Find first free slot
 	
-	var highestIndex = 0;
+	var _highestIndex = 0;
 	
 	#for 
 
 # Items
 
-func getItem(name):
+func getItem(itemName):
 	if Hotbar.length():
-		addItemToHotbar(name);
+		addItemToHotbar(itemName);
 	else:
-		addItemToInventory(name);
+		addItemToInventory(itemName);
 
 # Game loop
 

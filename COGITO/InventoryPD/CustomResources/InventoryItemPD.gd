@@ -34,7 +34,7 @@ func get_region(x, y):
 	var image = icon.get_image()
 	var x_chunk = icon.get_width() / item_size.x
 	var y_chunk = icon.get_height() / item_size.y
-	var region = Rect2i(Vector2i(x * x_chunk, y * y_chunk), Vector2i(x_chunk, y_chunk))
+	var region = Rect2i(Vector2i(int(x * x_chunk), int(y * y_chunk)), Vector2i(int(x_chunk), int(y_chunk)))
 	return image.get_region(region)
 
 func use(target) -> bool:
