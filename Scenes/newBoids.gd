@@ -7,6 +7,7 @@ extends Node3D
 @export var player: NodePath
 @export var predatorMinDist: float = 300
 @onready var boids = get_children();
+@onready var predators = get_tree().get_first_node_in_group("Predators").get_children();
 
 @export var cohesionWeight: float = 0.5
 @export var separationWeight: float = 50
@@ -16,7 +17,6 @@ extends Node3D
 @export var predatorWeight: float = 500
 @export var maxPlayerDistance: float = 10;
 
-var predatorRef;
 var playerRef;
 
 func _ready():
@@ -34,23 +34,24 @@ func _process(_delta: float) -> void:
 
 func escapePredator():
 	for boid in boids:
-		var dist = 9999999;#boid.get_position().distance_to(predatorRef);
-		
-		if dist < predatorMinDist:
-			var dir = (boid.get_position() - predatorRef.get_position()).normalized();
-			var multiplier = sqrt(1 - (dist / predatorMinDist));
+		for predator in predators:
+			var dist = boid.get_position().distance_to(predator.get_position());
 			
-			boid.acceleration += dir * multiplier * predatorWeight;
-		else:
-			var playerDist = boid.get_position().distance_to(playerRef.get_position());
-			
-			if playerDist < maxPlayerDistance:
-				var _dir = (boid.get_position() - playerRef.get_position()).normalized();
-				"""
-				var multiplier = sqrt(1 - (dist / maxPlayerDistance));
+			if dist < predatorMinDist:
+				var dir = (boid.get_position() - predator.get_position()).normalized();
+				var multiplier = sqrt(1 - (dist / predatorMinDist));
 				
 				boid.acceleration += dir * multiplier * predatorWeight;
-				"""
+			else:
+				var playerDist = boid.get_position().distance_to(playerRef.get_position());
+				
+				if playerDist < maxPlayerDistance:
+					var _dir = (boid.get_position() - playerRef.get_position()).normalized();
+					"""
+					var multiplier = sqrt(1 - (dist / maxPlayerDistance));
+					
+					boid.acceleration += dir * multiplier * predatorWeight;
+					"""
 
 func ceiling():
 	for boid in boids:

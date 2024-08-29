@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4vvwtxqjinf5"]
+
+[ext_resource type="PackedScene" uid="uid://p82jy5jlqjej" path="res://Fishies/Shark1Model/sharkmodel.tscn" id="1_1rh4v"]
+[ext_resource type="Script" path="res://Fishies/predator.gd" id="1_seuax"]
+
+[node name="shark" type="Node3D" groups=["predator"]]
+script = ExtResource("1_seuax")
+
+[node name="shark" parent="." instance=ExtResource("1_1rh4v")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, 0, 0)
+
+[node name="Rays" type="Node3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="Rays"]
+target_position = Vector3(0, 0, -0.5)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Rays"]
+target_position = Vector3(0, 0.2, -0.5)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Rays"]
+target_position = Vector3(0, -0.2, -0.5)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Rays"]
+target_position = Vector3(0.2, 0, -0.5)
+
+[node name="RayCast3D5" type="RayCast3D" parent="Rays"]
+target_position = Vector3(-0.2, 0, -0.5)
