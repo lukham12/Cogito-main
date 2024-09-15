@@ -5,7 +5,7 @@ extends Node3D
 @export var separationDistance: float = 0.4;
 @export var predator: NodePath
 @export var player: NodePath
-@export var predatorMinDist: float = 300
+@export var predatorMinDist: float = 1
 @onready var boids = get_children();
 @onready var predators = get_tree().get_first_node_in_group("Predators").get_children();
 

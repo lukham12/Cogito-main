@@ -39,6 +39,7 @@ stream_4/stream = ExtResource("16_buq0c")
 
 [node name="CogitoPlayer" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+visible = false
 script = ExtResource("1_87we8")
 pause_menu = NodePath("PauseMenu")
 player_hud = NodePath("Player_HUD")
