@@ -38,10 +38,10 @@ func escapePredator():
 		var playerDist = boid.get_position().distance_to(playerRef.get_position());
 		
 		if playerDist < damageRange:
-			var timer = boid.get_node("Timer");
+			var timer : Timer = boid.get_node("Timer");
 			
-			if not timer.is_stopped():
-				playerRef.decrease_attribute("Health", damage);
+			if timer.is_stopped():
+				playerRef.decrease_attribute("health", damage);
 				
 				timer.start();
 		elif playerDist < maxPlayerDistance:
