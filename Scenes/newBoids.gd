@@ -51,6 +51,8 @@ func escapePredator():
 					boid.acceleration += dir * multiplier * predatorWeight;
 					"""
 
+#TEST
+
 func ceiling():
 	for boid in boids:
 		var height = boid.position.y;
