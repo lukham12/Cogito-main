@@ -82,6 +82,7 @@ anim_action_primary = "swing"
 
 [node name="PickaxeMesh" type="Node3D" parent="."]
 script = ExtResource("4_0jrxw")
+disable_viewmodel_clipping = false
 
 [node name="toolPickaxe" type="MeshInstance3D" parent="PickaxeMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0414924, -0.1011, 1.49012e-07)

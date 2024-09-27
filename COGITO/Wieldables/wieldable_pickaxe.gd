@@ -10,9 +10,9 @@ var trigger_has_been_pressed : bool = false
 
 
 func _ready():
-	if wieldable_mesh:
-		wieldable_mesh.hide()
-		
+	#if wieldable_mesh:
+		#wieldable_mesh.hide()
+	
 	damage_area.body_entered.connect(_on_body_entered)
 
 
@@ -28,6 +28,12 @@ func action_primary(_passed_item_reference:InventoryItemPD, _is_released: bool):
 	animation_player.play(anim_action_primary)
 	audio_stream_player_3d.stream = swing_sound
 	audio_stream_player_3d.play()
+	
+	print("swing");
+	
+	# Check the pickaxe ray, check if in group "Ore".
+	
+	
 
 
 func _on_body_entered(collider):
