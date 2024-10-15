@@ -1,4 +1,10 @@
-[gd_scene load_steps=4 format=4 uid="uid://co4d23bb30osu"]
+[gd_scene load_steps=12 format=4 uid="uid://co4d23bb30osu"]
+
+[ext_resource type="Script" path="res://COGITO/CogitoObjects/cogito_object.gd" id="1_f1avf"]
+[ext_resource type="Script" path="res://COGITO/Components/Interactions/PickupComponent.gd" id="2_b60pg"]
+[ext_resource type="Texture2D" uid="uid://cr7p80qdnq7j" path="res://Icons/IronOre.png" id="3_sf3ht"]
+[ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventoryItemPD.gd" id="4_c8qjn"]
+[ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventorySlotPD.gd" id="5_ah8d1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn2o4"]
 resource_name = "metall"
@@ -38,9 +44,38 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t7scb")
 
-[node name="Ore" type="Node3D"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5imxt"]
+points = PackedVector3Array(0.0865434, 0.142385, 0.0287575, 0.0217422, 0.0983852, 0.0832035, 0.0865434, 0.112567, 0.0951198, 0.151311, 0.0983852, 0.0832035, 0.165497, 0.112567, 0.0287575, 0.151311, 0.0983852, -0.0256707, 0.0865434, 0.112567, -0.0375869, -0.0619508, 0.0780367, -0.0374974, -0.114868, 0.0812703, -0.000639424, 0.00755639, 0.0335981, 0.0951198, 0.0865434, 0.0335981, 0.120169, -0.104576, 0.0639244, 0.044288, 0.165497, 0.0335981, 0.0951198, 0.195324, 0.0335981, 0.0287575, 0.165497, 0.0335981, -0.0375869, 0.0865434, 0.0335981, -0.0626181, -0.0772877, 0.0179383, -0.0625107, -0.104576, 0.0639244, -0.0455668, -0.137417, 0.0332978, -0.0374974, -0.150553, 0.03667, -0.000639424, -0.137417, 0.0332978, 0.0362186, -0.123299, -0.00933924, 0.044288, 0.0865434, -0.0453937, 0.0951198, 0.151311, -0.031189, 0.0832035, 0.0217422, -0.031189, 0.0832035, 0.165497, -0.0453937, 0.0287575, 0.151311, -0.031189, -0.0256707, 0.0110775, -0.0732486, -0.0531352, -0.00927024, -0.0515606, -0.0625465, -0.0309383, -0.071909, -0.0531352, -0.123299, -0.00933924, -0.0455668, -0.140667, -0.0196174, -0.000639424, -0.0926585, -0.0421601, 0.0362186, 0.0865434, -0.0751888, 0.0287575, -0.0103875, -0.0860444, -0.00767107, -0.0106245, -0.093574, -0.0281577, -0.0103875, -0.0860444, -0.0486443, -0.0391316, -0.0795772, -0.0281577, -0.0926585, -0.0421601, -0.0374974, -0.0960442, -0.0553485, -0.000639424)
+
+[sub_resource type="Resource" id="Resource_ruud5"]
+script = ExtResource("4_c8qjn")
+name = "Iron Ore"
+description = "Iron. . ."
+icon = ExtResource("3_sf3ht")
+is_stackable = false
+stack_size = 0
+drop_scene = null
+hint_text_on_use = ""
+item_size = Vector2(1, 1)
+
+[sub_resource type="Resource" id="Resource_67nob"]
+script = ExtResource("5_ah8d1")
+inventory_item = SubResource("Resource_ruud5")
+quantity = 1
+origin_index = -1
+
+[node name="Ore" type="RigidBody3D"]
+script = ExtResource("1_f1avf")
 
 [node name="Ore" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 4.45051e-07, 1, 0, -1, 4.45051e-07, 0, 0, 0)
 mesh = SubResource("ArrayMesh_nmc7y")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 4.45051e-07, 1, 0, -1, 4.45051e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5imxt")
+
+[node name="PickupComponent" type="Node3D" parent="."]
+script = ExtResource("2_b60pg")
+slot_data = SubResource("Resource_67nob")
