@@ -52,8 +52,8 @@ script = ExtResource("4_c8qjn")
 name = "Iron Ore"
 description = "Iron. . ."
 icon = ExtResource("3_sf3ht")
-is_stackable = false
-stack_size = 0
+is_stackable = true
+stack_size = 10
 drop_scene = null
 hint_text_on_use = ""
 item_size = Vector2(1, 1)
@@ -79,3 +79,5 @@ shape = SubResource("ConvexPolygonShape3D_5imxt")
 [node name="PickupComponent" type="Node3D" parent="."]
 script = ExtResource("2_b60pg")
 slot_data = SubResource("Resource_67nob")
+input_map_action = "interact2"
+interaction_text = "pick up"

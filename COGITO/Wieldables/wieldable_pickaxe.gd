@@ -17,8 +17,6 @@ func _ready():
 		#wieldable_mesh.hide()
 	
 	damage_area.body_entered.connect(_on_body_entered)
-	
-	print(ray);
 
 
 # Primary action called by the Player Interaction Component when flashlight is wielded.
@@ -37,21 +35,26 @@ func action_primary(_passed_item_reference:InventoryItemPD, _is_released: bool):
 	# Check the pickaxe ray, check if the body on the ray in group "Ore".
 	var object = ray.get_collider();
 	
-	if object.is_in_group("Ore"):
-		# Increment the ores "hits"
-		object.hits += 1;
-		
-		# Check if the ore is almost "broken"
-		if object.hits >= object.maxHits:
-			print("Delete!");
-			# Check what kind of ore it is
-			var oreType = object.oreType;
+	if object:
+		if object.is_in_group("Ore"):
+			# Increment the ores "hits"
+			object.hits += 1;
 			
-			# Give the player the correct quantity of ores
-			
-			
-			# Remove the ore
-			object.queue_free();
+			# Check if the ore is almost "broken"
+			if object.hits >= object.maxHits:
+				# Check what kind of ore it is
+				var oreType = object.oreType;
+				
+				# Give the player the correct quantity of ores
+				for I in object.quantity:
+					var newInstance = object.dropScene.instantiate();
+					
+					get_tree().get_first_node_in_group("Items").add_child(newInstance);
+					
+					newInstance.global_position = object.global_position;
+				
+				# Remove the ore
+				object.queue_free();
 
 
 func _on_body_entered(collider):

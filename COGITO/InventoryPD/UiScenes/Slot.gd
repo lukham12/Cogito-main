@@ -23,6 +23,9 @@ func using_grid(usingGrid: bool):
 	grid = usingGrid
 
 func set_icon_region(x, y):
+	if not item_data:
+		return;
+	
 	var region = item_data.get_region(x, y)
 	texture_rect.texture = ImageTexture.create_from_image(region)
 
@@ -31,6 +34,7 @@ func set_hotbar_icon():
 
 func set_slot_data(slot_data: InventorySlotPD, index: int, moving: bool, x_size: int):
 	item_data = slot_data.inventory_item
+	
 	if moving:
 		slot_data.origin_index = index
 		origin_index = index
