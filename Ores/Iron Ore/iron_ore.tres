@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItemPD" load_steps=3 format=3 uid="uid://bnmrp634mvqof"]
+
+[ext_resource type="Texture2D" uid="uid://cr7p80qdnq7j" path="res://Icons/IronOre.png" id="1_pvwpl"]
+[ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventoryItemPD.gd" id="2_o6cl1"]
+
+[resource]
+script = ExtResource("2_o6cl1")
+name = "Iron Ore"
+description = "Iron. . ."
+icon = ExtResource("1_pvwpl")
+is_stackable = true
+stack_size = 4
+drop_scene = null
+hint_text_on_use = ""
+item_size = Vector2(1, 1)

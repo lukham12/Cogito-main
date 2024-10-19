@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItemPD" load_steps=3 format=3 uid="uid://sn8o0akip3en"]
+
+[ext_resource type="Texture2D" uid="uid://d0kb2bk1l5e0u" path="res://Icons/stick.png" id="1_lvgei"]
+[ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventoryItemPD.gd" id="2_e6x0q"]
+
+[resource]
+script = ExtResource("2_e6x0q")
+name = "Stick"
+description = "Sticky!"
+icon = ExtResource("1_lvgei")
+is_stackable = true
+stack_size = 99
+drop_scene = null
+hint_text_on_use = ""
+item_size = Vector2(1, 1)

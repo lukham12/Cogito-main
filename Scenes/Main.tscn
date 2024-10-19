@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://kicjwmh02uwf" path="res://COGITO/PackedScenes/cogito_player.tscn" id="1_o8f1y"]
 [ext_resource type="Script" path="res://COGITO/InventoryPD/CustomResources/InventorySlotPD.gd" id="2_r6ww1"]
 [ext_resource type="Script" path="res://COGITO/InventoryPD/cogito_inventory.gd" id="2_x5kcp"]
-[ext_resource type="PackedScene" uid="uid://drwglygtooy5y" path="res://Items/oxygen_bubble.tscn" id="3_sgnff"]
+[ext_resource type="PackedScene" uid="uid://drwglygtooy5y" path="res://Objects/oxygen_bubble.tscn" id="3_sgnff"]
 [ext_resource type="PackedScene" uid="uid://ckeeh60rswqom" path="res://COGITO/PackedScenes/oxygen_zone.tscn" id="4_lodru"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rbwg7"]

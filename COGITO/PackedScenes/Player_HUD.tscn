@@ -461,11 +461,13 @@ vertical_alignment = 1
 [node name="TabContainer" type="TabContainer" parent="QuestHUD/QuestDisplay/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_j6s1a")
+current_tab = 0
 
 [node name="Active" type="VBoxContainer" parent="QuestHUD/QuestDisplay/VBoxContainer/TabContainer"]
 layout_mode = 2
 theme = ExtResource("5_j6s1a")
 theme_override_constants/separation = 4
+metadata/_tab_index = 0
 
 [node name="QuestEntry" parent="QuestHUD/QuestDisplay/VBoxContainer/TabContainer/Active" instance=ExtResource("16_qsjbq")]
 layout_mode = 2
@@ -476,10 +478,12 @@ layout_mode = 2
 [node name="Completed" type="VBoxContainer" parent="QuestHUD/QuestDisplay/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Failed" type="VBoxContainer" parent="QuestHUD/QuestDisplay/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="FadeInScreen" type="Panel" parent="."]
 visible = false

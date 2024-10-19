@@ -65,4 +65,4 @@ func _on_body_exited(body: Node) -> void:
 		cogito_properties.check_for_reaction_timer_interrupt(body)
 
 func use():
-	print("you eat a bubble")
+	pass;
