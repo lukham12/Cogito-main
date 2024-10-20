@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckeeh60rswqom"]
+[gd_scene load_steps=10 format=3 uid="uid://ckeeh60rswqom"]
 
 [ext_resource type="Script" path="res://COGITO/Scripts/hazard_zone.gd" id="1_uakpb"]
 [ext_resource type="Texture2D" uid="uid://cakt3xnespmsb" path="res://Icons/OxygenBubble.png" id="2_cwiic"]
+[ext_resource type="PackedScene" uid="uid://cjd0jcse47bqb" path="res://ObjectModels/SmallPlant/SmallPlant.glb" id="3_srwqw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ldbt"]
 size = Vector3(1.5, 3, 1.5)
@@ -22,6 +23,7 @@ disable_receive_shadows = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 gravity = Vector3(0, 1, 0)
+turbulence_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isywl"]
 transparency = 1
@@ -43,6 +45,9 @@ is_active = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_3ldbt")
 
+[node name="SmallOxygenPlant" parent="." instance=ExtResource("3_srwqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.53446, 0)
+
 [node name="TransparentBox" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_tilja")
 skeleton = NodePath("../..")
@@ -50,6 +55,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_drdat")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="TransparentBox"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+amount = 5
+amount_ratio = 0.5
 visibility_aabb = AABB(-1, -2, -1, 2, 4, 2)
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_iyeq4")
