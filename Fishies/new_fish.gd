@@ -24,7 +24,7 @@ func _ready():
 func _process(dt):
 	velocity = lerp(velocity, velocity + acceleration.limit_length(maxAcceleration * dt), dt);
 	
-	#Advoid obstacles
+	# Advoid obstacles
 	var avgNormal = Vector3.ZERO;
 	var normals = 0;
 	
@@ -40,11 +40,10 @@ func _process(dt):
 		# Steer away from object
 		avgNormal /= normals;
 		
-		# Take dot product to find similarity between velocity and negative normal, muiltiply by facotr
+		# Take dot product to find similarity between velocity 
+		# and negative normal, muiltiply by factor
 		var factor = -avgNormal.dot(velocity);
-		
 		velocity += avgNormal * factor * 5 * dt;
-		#velocity = lerp(velocity, velocity + avgNormal * .75, dt);
 	
 	#Don't point "staright up"
 	var upProduct = Vector3(0, 1, 0).dot(velocity);

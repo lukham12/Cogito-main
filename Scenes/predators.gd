@@ -31,9 +31,9 @@ func _process(_delta: float) -> void:
 	alignment();
 	ceiling();
 	
-	escapePredator();
+	chasePlayer();
 
-func escapePredator():
+func chasePlayer():
 	for boid in boids:
 		var playerDist = boid.get_position().distance_to(playerRef.get_position());
 		

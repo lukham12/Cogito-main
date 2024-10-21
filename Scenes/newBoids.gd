@@ -15,19 +15,14 @@ extends Node3D
 @export var predatorWeight: float = 500
 @export var maxPlayerDistance: float = 10;
 
-var playerRef;
-
-func _ready():
-	playerRef = get_tree().get_nodes_in_group("Player")[0];
-
 func _process(_delta: float) -> void:
 	detectNeighbors();
 	
 	cohesion();
 	seperation();
 	alignment();
-	ceiling();
 	
+	ceiling();
 	escapePredator();
 
 func escapePredator():
@@ -37,19 +32,9 @@ func escapePredator():
 			
 			if dist < predatorMinDist:
 				var dir = (boid.get_position() - predator.get_position()).normalized();
-				var multiplier = sqrt(1 - (dist / predatorMinDist));
+				var multiplier = 1 - (dist / predatorMinDist);
 				
 				boid.acceleration += dir * multiplier * predatorWeight;
-			else:
-				var playerDist = boid.get_position().distance_to(playerRef.get_position());
-				
-				if playerDist < maxPlayerDistance:
-					var _dir = (boid.get_position() - playerRef.get_position()).normalized();
-					"""
-					var multiplier = sqrt(1 - (dist / maxPlayerDistance));
-					
-					boid.acceleration += dir * multiplier * predatorWeight;
-					"""
 
 func ceiling():
 	for boid in boids:
@@ -66,16 +51,16 @@ func detectNeighbors():
 		boid.neighbors.clear();
 		boid.neighborsDistances.clear();
 	
-	for boid in boids:
+	for boid in boids: # POTENTIAL OPTMIZATION: Loop through i+1 on second loop
 		for boid2 in boids:
 			var distance = boid.get_position().distance_to(boid2.get_position());
 			
 			if distance <= visualRange:
 				boid.neighbors.append(boid2);
-				boid2.neighbors.append(boid);
+				#boid2.neighbors.append(boid);
 				
 				boid.neighborsDistances.append(distance);
-				boid2.neighborsDistances.append(distance);
+				#boid2.neighborsDistances.append(distance);
 
 func alignment():
 	for i in range(boids.size()):
@@ -98,6 +83,7 @@ func seperation():
 		var neighbors = boid.neighbors;
 		var distances = boid.neighborsDistances;
 		
+		# Ensure no division by 0
 		if neighbors.is_empty():
 			continue;
 		
