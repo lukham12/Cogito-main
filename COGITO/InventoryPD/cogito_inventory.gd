@@ -192,12 +192,15 @@ func drop_single_slot_data(grabbed_slot_data: InventorySlotPD, index: int) -> In
 
 
 func pick_up_slot_data(slot_data: InventorySlotPD) -> bool:
+	slot_data = slot_data.duplicate();
+	
 	for index in inventory_slots.size():
 		slot_data.origin_index = index
 		if inventory_slots[index] and inventory_slots[index].can_fully_merge_with(slot_data):
 			slot_data.origin_index = index
 			inventory_slots[index].fully_merge_with(slot_data)
 			inventory_updated.emit(self)
+			
 			return true
 	
 	for index in inventory_slots.size():
@@ -206,6 +209,9 @@ func pick_up_slot_data(slot_data: InventorySlotPD) -> bool:
 			inventory_slots[index] = slot_data
 			add_adjacent_slots(index)
 			inventory_updated.emit(self)
+			
+			print("Added new slot");
+			
 			return true
 	
 	CogitoSceneManager._current_player_node.player_interaction_component.send_hint(null, "Unable to pick up item.")	

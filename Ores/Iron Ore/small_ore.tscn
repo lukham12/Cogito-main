@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dn1sbpe1u1t0n"]
+[gd_scene load_steps=11 format=4 uid="uid://dn1sbpe1u1t0n"]
 
 [ext_resource type="Texture2D" uid="uid://dutsx0ltxre6c" path="res://Ores/Ores_Image_3.png" id="1_07f6f"]
 [ext_resource type="Script" path="res://Ores/OreBody.gd" id="2_pg53j"]
@@ -74,6 +74,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nemrk")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ja76t"]
+velocity_pivot = Vector3(1, -20, 0)
+direction = Vector3(1, 20, 0)
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as578"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.627341, 0.308233, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jx3bx"]
+material = SubResource("StandardMaterial3D_as578")
+radius = 0.021
+height = 0.042
+
 [node name="SmallOre" type="StaticBody3D" groups=["Ore"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_pg53j")
@@ -84,3 +100,13 @@ shape = SubResource("ConcavePolygonShape3D_ijf06")
 [node name="SmallOre" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_tyl5u")
 skeleton = NodePath("")
+
+[node name="SparkParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_ja76t")
+draw_pass_1 = SubResource("SphereMesh_jx3bx")

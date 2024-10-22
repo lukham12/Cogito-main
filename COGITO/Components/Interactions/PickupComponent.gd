@@ -12,7 +12,7 @@ func interact(_player_interaction_component: PlayerInteractionComponent):
 
 func pick_up(_player_interaction_component: PlayerInteractionComponent):
 	if not _player_interaction_component.get_parent().inventory_data.pick_up_slot_data(slot_data):
-		return
+		return;
 
 	# Update wieldable UI if we have picked up ammo for current wieldable
 	# TODO: Possibly replace with a better solution, maybe by signaling the change

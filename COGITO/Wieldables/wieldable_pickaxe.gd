@@ -9,6 +9,8 @@ extends CogitoWieldable
 @onready var player = get_tree().get_first_node_in_group("Player");
 @onready var ray = player.get_node("Neck").get_node("Head").get_node("Eyes").get_node("Camera").get_node("InteractionRaycast");
 
+@export var hardness = 2;
+
 var trigger_has_been_pressed : bool = false
 
 
@@ -36,15 +38,21 @@ func action_primary(_passed_item_reference:InventoryItemPD, _is_released: bool):
 	var object = ray.get_collider();
 	
 	if object:
-		if object.is_in_group("Ore"):
+		if object.is_in_group("Ore") and object.hardness <= hardness:
 			# Increment the ores "hits"
 			object.hits += 1;
 			
+			"""
+			# Offset spark particles
+			var sparkParticles = object.get_node("SparkParticles");
+			sparkParticles.global_position = ray.get_collision_point();
+			
+			# Emit particles
+			sparkParticles.emitting = true;
+			"""
+			
 			# Check if the ore is almost "broken"
 			if object.hits >= object.maxHits:
-				# Check what kind of ore it is
-				var oreType = object.oreType;
-				
 				# Give the player the correct quantity of ores
 				for I in object.quantity:
 					var newInstance = object.dropScene.instantiate();
