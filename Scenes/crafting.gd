@@ -13,7 +13,6 @@ func attemptCraft(recipe):
 	#-> Check if the player has the required resources
 	# Loop through all the ingredients and get their respective names
 	var playerSlots = [];
-	
 	for ingredient in recipe.ingredients:
 		var ingredientName = ingredient.inventory_item.name;
 		var ingredientQuantity = ingredient.quantity;
@@ -86,7 +85,8 @@ func _ready() -> void:
 			# Add an image to the ingredient
 			newIngredient.get_node("Image").texture = ingredient.inventory_item.icon;
 			
-			# Add quanity text to ingredient (if the quanity isn't 1). Quantity should be in form x[X] e.g. x1 x6 x78
+			# Add quanity text to ingredient (if the quanity isn't 1). 
+			# Quantity should be in form x[X] e.g. x1 x6 x78
 			if ingredient.quantity != 1:
 				newIngredient.get_node("Quantity").text = "x" + str(ingredient.quantity);
 		
