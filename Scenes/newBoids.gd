@@ -51,16 +51,18 @@ func detectNeighbors():
 		boid.neighbors.clear();
 		boid.neighborsDistances.clear();
 	
-	for boid in boids: # POTENTIAL OPTMIZATION: Loop through i+1 on second loop
-		for boid2 in boids:
+	for i in range(boids.size()):
+		var boid = boids[i];
+		for j in range(i+1, boids.size()):
+			var boid2 = boids[j];
 			var distance = boid.get_position().distance_to(boid2.get_position());
 			
 			if distance <= visualRange:
 				boid.neighbors.append(boid2);
-				#boid2.neighbors.append(boid);
+				boid2.neighbors.append(boid);
 				
 				boid.neighborsDistances.append(distance);
-				#boid2.neighborsDistances.append(distance);
+				boid2.neighborsDistances.append(distance);
 
 func alignment():
 	for i in range(boids.size()):

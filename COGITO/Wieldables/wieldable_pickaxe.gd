@@ -42,14 +42,12 @@ func action_primary(_passed_item_reference:InventoryItemPD, _is_released: bool):
 			# Increment the ores "hits"
 			object.hits += 1;
 			
-			"""
 			# Offset spark particles
 			var sparkParticles = object.get_node("SparkParticles");
 			sparkParticles.global_position = ray.get_collision_point();
 			
 			# Emit particles
 			sparkParticles.emitting = true;
-			"""
 			
 			# Check if the ore is almost "broken"
 			if object.hits >= object.maxHits:
